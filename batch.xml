@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Batch Suite">
+    <suite-files>
+        <suite-file path="FunctionalGrp.xml"/>
+        <suite-file path="smokeGrp.xml"/>
+        <suite-file path="IntegrationGrp.xml"/>
+        <suite-file path="SystemGrp.xml"/>
+    </suite-files>
+</suite>
