@@ -18,14 +18,19 @@ public class ScreenshotUtility {
             WebDriver driver, String testName) throws IOException {
 
         if (driver == null) {
+            System.err.println("Screenshot skipped: WebDriver is null.");
             return;
         }
 
+        // Create ScreenShot folder automatically if it does not exist
         Path folder = Paths.get("ScreenShot");
+        Files.createDirectories(folder);
 
+        // Make test name safe for a file name
         String safeName = testName.replaceAll(
                 "[^a-zA-Z0-9._-]", "_");
 
+        // Add timestamp to prevent overwriting screenshots
         String timestamp = LocalDateTime.now().format(
                 DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss_SSS"));
 

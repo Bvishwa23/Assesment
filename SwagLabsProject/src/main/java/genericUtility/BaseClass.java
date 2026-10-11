@@ -80,13 +80,17 @@ public class BaseClass {
     public void tearDown(ITestResult result) {
 
         try {
+            // Automatically capture screenshots for failed tests
             if (result.getStatus() == ITestResult.FAILURE
                     && driver != null) {
 
+                String testName = result.getTestClass()
+                        .getRealClass().getSimpleName()
+                        + "_"
+                        + result.getMethod().getMethodName();
+
                 ScreenshotUtility.captureScreenshot(
-                        driver,
-                        result.getMethod().getMethodName()
-                );
+                        driver, testName);
             }
 
         } catch (Exception e) {
@@ -96,6 +100,7 @@ public class BaseClass {
         } finally {
             if (driver != null) {
                 driver.quit();
+                driver = null;
             }
 
             System.out.println("Browser Closed");
